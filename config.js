@@ -35,6 +35,7 @@ module.exports = function() {
       }
     }
   };
+  var fs = require('fs');
   if (fs.existsSync('./config.js')) {
     require('./config')(config);
   }

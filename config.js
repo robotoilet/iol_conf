@@ -40,7 +40,7 @@ module.exports = function() {
   };
   var localConfig = callsite()[1].getFileName();
   if (fs.existsSync(localConfig)) {
-    require(localConfig))(config);
+    require(localConfig)(config);
   }
   return config;
 }();

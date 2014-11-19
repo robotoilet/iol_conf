@@ -1,4 +1,5 @@
 var callsite = require('callsite')
+  , fs = require('fs')
   , path = require('path');
 
 module.exports = function() {
@@ -38,9 +39,9 @@ module.exports = function() {
       }
     }
   };
-  var fs = require('fs');
-  if (fs.existsSync('./config.js')) {
-    require(path.dirname(callsite()[1].getFileName()))(config);
+  var localConfig = path.dirname(callsite()[1].getFileName();
+  if (fs.existsSync(localConfig)) {
+    require(localConfig))(config);
   }
   return config;
 }();

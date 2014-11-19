@@ -1,5 +1,5 @@
 {
-  "name": "config",
+  "name": "iol_conf",
   "description": "The configuration for everything",
   "version": "0.1.0",
   "main": "config.js",

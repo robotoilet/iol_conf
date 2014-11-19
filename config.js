@@ -1,3 +1,6 @@
+var callsite = require('callsite')
+  , path = require('path');
+
 module.exports = function() {
   var config = {
     // database related (for sensor data)
@@ -37,7 +40,7 @@ module.exports = function() {
   };
   var fs = require('fs');
   if (fs.existsSync('./config.js')) {
-    require('./config')(config);
+    require(path.dirname(callsite()[1].getFileName()))(config);
   }
   return config;
 }();

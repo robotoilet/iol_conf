@@ -13,6 +13,7 @@ module.exports = {
   // TODO: this will live in a database, not here.
   punters: {
     punterX: {
+      getPassword: function() {return "punterX"}, // :-)
       sites: {
         siteX: {
           series: {

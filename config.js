@@ -2,7 +2,7 @@ module.exports = {
   // database related (for sensor data)
   httpApi: "http://localhost:8086",
   dbName: "toilets",
-  dataParsers = {
+  dataParsers: {
     regex: {
       chunk: /[^\n]+/g,
       seriesName: /^[^\(\s]+/,

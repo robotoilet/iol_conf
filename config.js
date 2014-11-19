@@ -1,6 +1,6 @@
 module.exports = {
   // database related (for sensor data)
-  httpApi: "http://localhost:8086",
+  httpApi: "http://sensorDB:8086",
   dbName: "toilets",
   dataParsers: {
     regex: {

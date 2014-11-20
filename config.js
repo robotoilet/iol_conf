@@ -1,5 +1,6 @@
-var callsite = require('callsite')
+var path = require('path')
   , fs = require('fs');
+
 
 module.exports = function() {
   var config = {
@@ -38,9 +39,18 @@ module.exports = function() {
       }
     }
   };
-  var localConfig = callsite()[1].getFileName();
+
+  // Check for local config overwrites; expects config.js in the directory of
+  // the module initially called by node
+  var mainDir = path.dirname(require.main.filename);
+  // A hack in case the module we want is called by some of its dependencies as
+  // in case of testing with mocha
+  mainDir = mainDir.split('node_modules')[0];
+  var localConfig = path.join(mainDir, 'config.js');
   if (fs.existsSync(localConfig)) {
-    require(localConfig)(config);
+    // updateCfg expected to be a function that can modify the config object
+    var updateCfg = require(localConfig);
+    updateCfg(config);
   }
   return config;
 }();

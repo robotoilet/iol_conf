@@ -3,9 +3,6 @@
   "description": "The configuration for everything",
   "version": "0.1.0",
   "main": "config.js",
-  "dependencies": {
-    "callsite": "~1.0.0"
-  },
   "scripts": {
     "start": "node index.js"
   },

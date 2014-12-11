@@ -7,6 +7,14 @@ module.exports = function() {
     // database related (for sensor data)
     httpApi: "http://sensorDB:8086",
     dbName: "toilets",
+    checksums: {
+      inUse: 'madeUp',
+      madeUp: {
+        bytesumLength: 6,
+        filler: ':',
+        lastNchars: 10
+      }
+    },
     dataParsers: {
       regex: {
         chunk: /[^\n]+/g,

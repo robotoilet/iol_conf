@@ -34,13 +34,13 @@ module.exports = function() {
         getPassword: function() {return "punterX"}, // :-)
         sites: {
           siteX: {
-            sensorMap: {
-              a: 'SensorX',
-              b: 'SensorY',
-              c: 'SensorZ',
-              d: 'sensorschmensor'
-            },
             series: {
+              sensorMap: {
+                a: 'SensorX',
+                b: 'SensorY',
+                c: 'SensorZ',
+                d: 'sensorschmensor'
+              },
               defaultSeries: {
                 columns: ['time', 'line'],
                 dataTypes: [parseInt, parseInt]

@@ -16,6 +16,11 @@ module.exports = function() {
       }
     },
     dataParsers: {
+      inUse: 'simple',
+      simple: { // a datapoint contains all the information
+        chunk: /[^\n]+/g,
+        dataPoints: /\(([^)]+)/g
+      },
       regex: {
         chunk: /[^\n]+/g,
         seriesName: /^[^\(\s]+/,
@@ -29,6 +34,12 @@ module.exports = function() {
         getPassword: function() {return "punterX"}, // :-)
         sites: {
           siteX: {
+            sensorMap: {
+              a: 'SensorX',
+              b: 'SensorY',
+              c: 'SensorZ',
+              d: 'sensorschmensor'
+            },
             series: {
               defaultSeries: {
                 columns: ['time', 'line'],

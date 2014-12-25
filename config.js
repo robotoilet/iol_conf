@@ -48,7 +48,7 @@ module.exports = function() {
               // SensorX: no configuration, defaultSensor shall be used
               SensorY: {
                 columns: ['time', 'x', 'y'],
-                dataTypes: [parseInt, parseFloat, parseInt]
+                dataTypes: [function(s) {return parseInt(s) * 1000}, parseFloat, parseInt]
               },
               // SensorY: no configuration, defaultSensor shall be used
               // sensorschmensor: no configuration, default Sensor shall be used

@@ -43,7 +43,7 @@ module.exports = function() {
               },
               defaultSeries: {
                 columns: ['time', 'line'],
-                dataTypes: [parseInt, parseInt]
+                dataTypes: [function(s) {return parseInt(s) * 1000}, parseInt]
               },
               // SensorX: no configuration, defaultSensor shall be used
               SensorY: {

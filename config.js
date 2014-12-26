@@ -2,6 +2,14 @@ var path = require('path')
   , fs = require('fs');
 
 
+function updateConfig(configToUpdate, path2cfg) {
+  if (fs.existsSync(path2cfg)) {
+    // updateCfg expected to be a function that can modify the config object
+    var updateCfg = require(path2cfg);
+    updateCfg(configToUpdate);
+  }
+}
+
 module.exports = function() {
   var config = {
     // database related (for sensor data)
@@ -59,17 +67,27 @@ module.exports = function() {
     }
   };
 
-  // Check for local config overwrites; expects config.js in the directory of
-  // the module initially called by node
+  // Check for config overwrites (for testing and/or local specifics);
+  // Local overwrites expect config.js (test-config.js) in the directory of the
+  // module initially called by node
   var mainDir = path.dirname(require.main.filename);
+
+  // For later: check whether the caller is our test framework (mocha)
+  isMocha = mainDir.match('mocha');
+
   // A hack in case the module we want is called by some of its dependencies as
   // in case of testing with mocha
   mainDir = mainDir.split('node_modules')[0];
-  var localConfig = path.join(mainDir, 'config.js');
-  if (fs.existsSync(localConfig)) {
-    // updateCfg expected to be a function that can modify the config object
-    var updateCfg = require(localConfig);
-    updateCfg(config);
+
+  // a local config updates the global config..
+  updateConfig(config, path.join(mainDir, 'config.js'));
+
+  if (isMocha) {
+    // a global test config updates local and global non-test configs..
+    require('./test-config.js')(config);
+
+    // a local test config updates all others
+    updateConfig(config, path.join(mainDir, 'test-config.js'));
   }
   return config;
 }();

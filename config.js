@@ -1,9 +1,11 @@
-var path = require('path')
-  , fs = require('fs');
+var path = require('path'),
+    fs = require('fs'),
+    logger = require('./logger');
 
 
 function updateConfig(configToUpdate, path2cfg) {
   if (fs.existsSync(path2cfg)) {
+    logger.info("Found a config to update standards at %s", path2cfg);
     // updateCfg expected to be a function that can modify the config object
     var updateCfg = require(path2cfg);
     updateCfg(configToUpdate);
@@ -18,9 +20,7 @@ module.exports = function() {
     checksums: {
       inUse: 'madeUp',
       madeUp: {
-        bytesumLength: 6,
         filler: ':',
-        lastNchars: 10
       }
     },
     dataParsers: {
@@ -39,7 +39,7 @@ module.exports = function() {
     // TODO: this will live in a database, not here.
     punters: {
       punterX: {
-        getPassword: function() {return "punterX"}, // :-)
+        getPassword: function() {return "punterX";}, // :-)
         sites: {
           siteX: {
             series: {
@@ -51,12 +51,12 @@ module.exports = function() {
               },
               defaultSeries: {
                 columns: ['time', 'line'],
-                dataTypes: [function(s) {return parseInt(s) * 1000}, parseInt]
+                dataTypes: [function(s) {return parseInt(s) * 1000;}, parseInt]
               },
               // SensorX: no configuration, defaultSensor shall be used
               SensorY: {
                 columns: ['time', 'x', 'y'],
-                dataTypes: [function(s) {return parseInt(s) * 1000}, parseFloat, parseInt]
+                dataTypes: [function(s) {return parseInt(s) * 1000;}, parseFloat, parseInt]
               },
               // SensorY: no configuration, defaultSensor shall be used
               // sensorschmensor: no configuration, default Sensor shall be used
